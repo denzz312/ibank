@@ -16,19 +16,29 @@ public class Customer {
 			return false;
 		}
 		
-		target.increaseFundsBy(amount);
+		target.increaseFundsBy(amount);	
+		storeTransaction(TransactionType.TRANSFER, amount, target, source);
 		return true;
 	}
 	
 	public void depositTo(float amount, Account target) {
 		target.increaseFundsBy(amount);
+		storeTransaction(TransactionType.DEPOSIT, amount, target, null);
 	}
 	
 	public boolean tryWithdrawFrom(float amount, Account target) {
-		return target.tryDecreaseFundsBy(amount);
+		
+		if (!target.tryDecreaseFundsBy(amount))
+		{
+			return false;
+		}
+		
+		storeTransaction(TransactionType.WITHDRAW, amount, target, null);
+		return true;
 	}
 	
 	private void storeTransaction(TransactionType transactionType, float amount, Account target, Account source) {
+		// TODO: store transaction in database
 		
 		if (source != null)
 		{
@@ -38,5 +48,9 @@ public class Customer {
 		{
 			System.out.printf("%s %.2f to %s%n", transactionType, amount, target);
 		}
+	}
+	
+	private void getTransactionHistory() {
+		// TODO: return transaction history from database
 	}
 }
