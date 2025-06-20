@@ -9,11 +9,18 @@ public class Account {
 	
     public Account(String ID) {
         this.ID = ID;
-        this.accountType = AccountType.Chequing;
-        this.currency = Currency.CAD;
-        this.funds = 5000;
+        //TODO: get account data from database
     }
 	
+    // This constructor is used for testing, should not be needed in the final product
+    public Account(String ID, AccountType accountType, Currency currency, float funds)
+    {
+    	this.ID = ID;
+    	this.accountType = accountType;
+    	this.currency = currency;
+    	this.funds = funds;
+    }
+    
 	public String getID() {
 	    return ID;
 	}

@@ -7,6 +7,13 @@ public class Customer {
 	
 	public Customer(String cardNumber) {
 		this.cardNumber = cardNumber;
+		//TODO: set card numbers from database
+	}
+	
+	public Customer(String cardNumber, Account[] accounts)
+	{
+		this.cardNumber = cardNumber;
+		this.accounts = accounts;
 	}
 	
 	public boolean tryTransferFunds (float amount, Account source, Account target) {
@@ -16,7 +23,7 @@ public class Customer {
 			return false;
 		}
 		
-		target.increaseFundsBy(amount);	
+		target.increaseFundsBy(CurrencyExchanger.getConvertedAmount(amount, source.getCurrency(), target.getCurrency()));	
 		storeTransaction(TransactionType.TRANSFER, amount, target, source);
 		return true;
 	}
@@ -42,11 +49,11 @@ public class Customer {
 		
 		if (source != null)
 		{
-			System.out.printf("%s %.2f from %s to %s%n", transactionType, amount, source, target);
+			System.out.printf("%s %.2f %s from %s to %s%n", transactionType, amount, source.getCurrency(), source.getID(), target.getID());
 		}
 		else
 		{
-			System.out.printf("%s %.2f to %s%n", transactionType, amount, target);
+			System.out.printf("%s %.2f %s to %s%n", transactionType, amount, target.getCurrency(), target.getID());
 		}
 	}
 	
