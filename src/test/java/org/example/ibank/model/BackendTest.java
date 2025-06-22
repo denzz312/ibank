@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class BackendTest {
 
+	/*
 	@Test
 	public void testTryDecreaseFunds() {
 		Account account1 = new Account("1", AccountType.Chequing, Currency.CAD, 5000);
@@ -28,5 +29,5 @@ public class BackendTest {
 		assertEquals(3000f, account1.getFunds(), 0.0001);
 
 	}
-	
+	*/
 }

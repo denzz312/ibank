@@ -5,11 +5,6 @@ public class Customer {
 	public Account[] accounts;
 	public final String cardNumber;
 	
-	public Customer(String cardNumber) {
-		this.cardNumber = cardNumber;
-		//TODO: set card numbers from database
-	}
-	
 	public Customer(String cardNumber, Account[] accounts)
 	{
 		this.cardNumber = cardNumber;
@@ -24,13 +19,13 @@ public class Customer {
 		}
 		
 		target.increaseFundsBy(CurrencyExchanger.getConvertedAmount(amount, source.getCurrency(), target.getCurrency()));	
-		storeTransaction(TransactionType.TRANSFER, amount, target, source);
+		saveTransaction(TransactionType.TRANSFER, amount, target, source);
 		return true;
 	}
 	
 	public void depositTo(float amount, Account target) {
 		target.increaseFundsBy(amount);
-		storeTransaction(TransactionType.DEPOSIT, amount, target, null);
+		saveTransaction(TransactionType.DEPOSIT, amount, target, null);
 	}
 	
 	public boolean tryWithdrawFrom(float amount, Account target) {
@@ -40,13 +35,12 @@ public class Customer {
 			return false;
 		}
 		
-		storeTransaction(TransactionType.WITHDRAW, amount, target, null);
+		saveTransaction(TransactionType.WITHDRAW, amount, target, null);
 		return true;
 	}
 	
-	private void storeTransaction(TransactionType transactionType, float amount, Account target, Account source) {
-		// TODO: store transaction in database
-		
+	private void saveTransaction(TransactionType transactionType, float amount, Account target, Account source) {
+			
 		if (source != null)
 		{
 			System.out.printf("%s %.2f %s from %s to %s%n", transactionType, amount, source.getCurrency(), source.getID(), target.getID());
@@ -54,6 +48,14 @@ public class Customer {
 		else
 		{
 			System.out.printf("%s %.2f %s to %s%n", transactionType, amount, target.getCurrency(), target.getID());
+		}
+		
+		AccountsDatabase.storeTransaction(transactionType, amount, target, source);
+		AccountsDatabase.updateAccount(target);
+		
+		if (source != null)
+		{
+			AccountsDatabase.updateAccount(source);
 		}
 	}
 	
