@@ -6,13 +6,11 @@
 <?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.ibank.ProfileController"
-      alignment="CENTER"
-      spacing="20">
-
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+      alignment="TOP_LEFT"
+      spacing="20"
+      style="-fx-padding: 20;">
 
     <Label text="Your Accounts" style="-fx-font-size: 18px;" />
-    <VBox fx:id="accountList" spacing="10" />
+
+    <VBox fx:id="accountList" spacing="10" alignment="TOP_LEFT" />
 </VBox>
