@@ -33,7 +33,7 @@ public class ProfileController {
             Button button = new Button(line);
             button.setStyle("-fx-font-size: 14px; -fx-alignment: CENTER_LEFT;");
             button.setOnAction(e -> {
-                // TODO: Navigate to account screen
+                // TODO: Replace line below with navigation to account screen
                 System.out.println("Clicked: " + account.getID());
             });
 

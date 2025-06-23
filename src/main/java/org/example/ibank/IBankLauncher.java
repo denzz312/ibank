@@ -22,12 +22,12 @@ public class IBankLauncher extends Application {
         //TODO showLoginScreen();
 
         //Uncomment the following to test profile-view:
-        Account[] accounts = new Account[] {
-                new Account("CHK1234", AccountType.Chequing, Currency.USD, 1500.00f),
-                new Account("SAV5678", AccountType.Saving, Currency.CAD, 3000.00f)
-        };
-        var testCustomer = new Customer("1234", accounts);
-        showProfileScreen(testCustomer);
+//        Account[] accounts = new Account[] {
+//                new Account("CHK1234", AccountType.Chequing, Currency.USD, 1500.00f),
+//                new Account("SAV5678", AccountType.Saving, Currency.CAD, 3000.00f)
+//        };
+//        var testCustomer = new Customer("1234", accounts);
+//        showProfileScreen(testCustomer);
     }
 
     public void showProfileScreen(Customer customer) throws IOException {
