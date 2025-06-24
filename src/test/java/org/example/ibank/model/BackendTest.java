@@ -26,7 +26,6 @@ public class BackendTest {
 		
 		SessionManager.currentCustomer.tryWithdrawFrom(5000, SessionManager.currentAccount);
 		assertEquals(3000f, account1.getFunds(), 0.0001);
-
 	}
-	
+
 }
