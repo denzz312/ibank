@@ -10,4 +10,12 @@ public class SessionManager {
 		currentAccount = null;
 	}
 	
+	public static void StartDummySession()
+	{
+		Account account1 = new Account("Dummy 1", AccountType.Chequing, Currency.CAD, 10000);
+		Account account2 = new Account("Dummy 2", AccountType.Chequing, Currency.USD, 10000);
+		currentCustomer = new Customer("Dummy", new Account[] {account1, account2});
+		currentAccount = account1;
+	}
+	
 }
