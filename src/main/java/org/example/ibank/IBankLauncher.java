@@ -21,6 +21,7 @@ public class IBankLauncher extends Application {
         
         //TODO showLoginScreen();      
         showAccountMainScreen();     
+        //showProfileScreen();
     }
     
     public void showAccountMainScreen() throws IOException {
@@ -37,6 +38,19 @@ public class IBankLauncher extends Application {
 
     }
 
+    public void showProfileScreen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
+        Parent root = loader.load();
+
+        ProfileController controller = loader.getController();
+        controller.setAccounts(SessionManager.currentCustomer.accounts);
+
+        Scene scene = new Scene(root, 400, 300);
+        primaryStage.setTitle("Main Profile");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
     public static void main(String[] args) {
         launch();
     }
