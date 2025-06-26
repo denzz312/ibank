@@ -14,13 +14,13 @@ import java.io.IOException;
 
 public class IBankLauncher extends Application {
 
-    private Stage primaryStage;
+    public static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
     	
     	SessionManager.StartDummySession();
-        this.primaryStage = stage;
+        primaryStage = stage;
         
         //TODO showLoginScreen();      
 //        showAccountMainScreen();
@@ -28,22 +28,21 @@ public class IBankLauncher extends Application {
         showPopUps();
     }
     
-    public void showAccountMainScreen() throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("account-view.fxml"));
-    	Parent root = loader.load();
+    public static void showAccountMainScreen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("account-view.fxml"));
+        Parent root = loader.load();
 
-    	AccountScreenController controller = loader.getController();
+        AccountScreenController controller = loader.getController();
         controller.setAccount(SessionManager.currentAccount);
-    	
-    	Stage stage = new Stage();
-    	stage.setTitle("Bank Account");
-    	stage.setScene(new Scene(root));
-    	stage.show();
 
+        Scene scene = new Scene(root, 400, 300);
+        primaryStage.setTitle("Bank Account");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
-    public void showProfileScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
+    public static void showProfileScreen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("profile-view.fxml"));
         Parent root = loader.load();
 
         ProfileController controller = loader.getController();
