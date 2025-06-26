@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.ibank.controller.AccountScreenController;
+import org.example.ibank.controller.ProfileController;
 import org.example.ibank.model.SessionManager;
+import org.example.ibank.utils.PopUpUtils;
 
 import java.io.IOException;
 
@@ -20,8 +23,9 @@ public class IBankLauncher extends Application {
         primaryStage = stage;
         
         //TODO showLoginScreen();      
-        showAccountMainScreen();     
-        //showProfileScreen();
+//        showAccountMainScreen();
+//        showProfileScreen();
+        showPopUps();
     }
     
     public static void showAccountMainScreen() throws IOException {
@@ -48,6 +52,21 @@ public class IBankLauncher extends Application {
         primaryStage.setTitle("Main Profile");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void showPopUps() {
+        try {
+            PopUpUtils.showSuccessPopUp("Operation completed successfully!");
+            PopUpUtils.showErrorPopUp("An error occurred.");
+            boolean confirmed = PopUpUtils.showConfirmationPopUp("Are you sure?");
+            if (confirmed) {
+                PopUpUtils.showSuccessPopUp("Confirmed!");
+            } else {
+                PopUpUtils.showErrorPopUp("Cancelled!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public static void main(String[] args) {

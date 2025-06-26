@@ -1,4 +1,4 @@
-package org.example.ibank;
+package org.example.ibank.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

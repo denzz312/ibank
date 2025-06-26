@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.ibank.AccountScreenController" spacing="10" alignment="TOP_CENTER">
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.ibank.controller.AccountScreenController" spacing="10" alignment="TOP_CENTER">
     <Label text="Account Details" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
     <Label fx:id="accountNumberLabel" text="Account Number: ---" />
     <Label fx:id="fundsLabel" text="Funds: ---" />
