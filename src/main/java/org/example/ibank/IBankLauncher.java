@@ -15,12 +15,16 @@ import java.io.IOException;
 public class IBankLauncher extends Application {
 
     public static Stage primaryStage;
+    private final float initialWidth = 400f;
+    private final float initialHeight = 300f;
 
     @Override
     public void start(Stage stage) throws IOException {
     	
     	SessionManager.StartDummySession();
         primaryStage = stage;
+        primaryStage.setWidth(initialWidth);
+        primaryStage.setHeight(initialHeight);
         
         //TODO showLoginScreen();      
         showAccountMainScreen();
@@ -35,7 +39,7 @@ public class IBankLauncher extends Application {
         AccountScreenController controller = loader.getController();
         controller.setAccount(SessionManager.currentAccount);
 
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
         primaryStage.setTitle("Bank Account");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -48,7 +52,7 @@ public class IBankLauncher extends Application {
         ProfileController controller = loader.getController();
         controller.setAccounts(SessionManager.currentCustomer.accounts);
 
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
         primaryStage.setTitle("Main Profile");
         primaryStage.setScene(scene);
         primaryStage.show();

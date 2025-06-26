@@ -39,7 +39,7 @@ public class AccountScreenController {
             WithdrawController wc = loader.getController();
             wc.setAccount(account);                   // pass the current account
 
-            Scene scene = new Scene(root, 400, 300);
+            Scene scene = new Scene(root, IBankLauncher.primaryStage.getWidth(), IBankLauncher.primaryStage.getHeight());
         	IBankLauncher.primaryStage.setTitle("Withdraw");
         	IBankLauncher.primaryStage.setScene(scene);
         	IBankLauncher.primaryStage.show();
@@ -51,8 +51,22 @@ public class AccountScreenController {
 
     @FXML
     private void onDepositClicked() {
-        System.out.println("Deposit clicked");
-        // TODO: open deposit screen
+        try {
+            FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("/org/example/ibank/deposit-view.fxml"));
+            Parent root = loader.load();
+
+            DepositController controller = loader.getController();
+            controller.setAccount(account);
+            
+            Scene scene = new Scene(root, IBankLauncher.primaryStage.getWidth(), IBankLauncher.primaryStage.getHeight());
+            IBankLauncher.primaryStage.setTitle("Deposit");
+            IBankLauncher.primaryStage.setScene(scene);
+            IBankLauncher.primaryStage.show();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
