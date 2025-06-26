@@ -2,6 +2,12 @@ package org.example.ibank;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import java.io.IOException;
+
 import org.example.ibank.model.Account;
 
 public class AccountScreenController {
@@ -26,8 +32,23 @@ public class AccountScreenController {
     
     @FXML
     private void onWithdrawClicked() {
-        System.out.println("Withdraw clicked");
-        // TODO: open withdraw screen
+        try {
+            FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("withdraw-view.fxml"));
+            Parent root = loader.load();
+
+            WithdrawController wc = loader.getController();
+            wc.setAccount(account);                   // pass the current account
+
+            Scene scene = new Scene(root, 400, 300);
+        	IBankLauncher.primaryStage.setTitle("Withdraw");
+        	IBankLauncher.primaryStage.setScene(scene);
+        	IBankLauncher.primaryStage.show();
+        
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     @FXML
