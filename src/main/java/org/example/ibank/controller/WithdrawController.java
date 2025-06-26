@@ -1,4 +1,4 @@
-package org.example.ibank;
+package org.example.ibank.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 
 import org.example.ibank.model.Account;
+import org.example.ibank.IBankLauncher;
 
 public class WithdrawController {
 

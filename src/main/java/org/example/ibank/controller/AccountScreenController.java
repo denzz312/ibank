@@ -4,11 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
 
 import org.example.ibank.model.Account;
+import org.example.ibank.IBankLauncher;
 
 public class AccountScreenController {
 
@@ -34,9 +34,8 @@ public class AccountScreenController {
     private void onWithdrawClicked() {
         try {
             FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("withdraw-view.fxml"));
+                new FXMLLoader(getClass().getResource("/org/example/ibank/withdraw-view.fxml"));
             Parent root = loader.load();
-
             WithdrawController wc = loader.getController();
             wc.setAccount(account);                   // pass the current account
 
@@ -48,7 +47,6 @@ public class AccountScreenController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
     @FXML

@@ -23,9 +23,9 @@ public class IBankLauncher extends Application {
         primaryStage = stage;
         
         //TODO showLoginScreen();      
-//        showAccountMainScreen();
+        showAccountMainScreen();
 //        showProfileScreen();
-        showPopUps();
+//        showPopUps();
     }
     
     public static void showAccountMainScreen() throws IOException {
