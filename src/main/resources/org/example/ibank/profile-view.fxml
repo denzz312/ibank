@@ -5,7 +5,7 @@
 
 <?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.ibank.ProfileController"
+      fx:controller="org.example.ibank.controller.ProfileController"
       alignment="TOP_LEFT"
       spacing="20"
       style="-fx-padding: 20;">
