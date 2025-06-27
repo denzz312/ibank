@@ -4,7 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+
+import org.example.ibank.IBankLauncher;
 import org.example.ibank.model.Account;
+import org.example.ibank.model.AccountsDatabase;
+import org.example.ibank.model.SessionManager;
 
 public class ProfileController {
 
@@ -33,8 +39,13 @@ public class ProfileController {
             Button button = new Button(line);
             button.setStyle("-fx-font-size: 14px; -fx-alignment: CENTER_LEFT;");
             button.setOnAction(e -> {
-                // TODO: Replace line below with navigation to account screen
-                System.out.println("Clicked: " + account.getID());
+            	
+            	try {
+            		SessionManager.currentAccount = account;
+					IBankLauncher.showAccountMainScreen();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
             });
 
             accountList.getChildren().add(button);
