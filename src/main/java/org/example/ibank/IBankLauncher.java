@@ -26,8 +26,8 @@ public class IBankLauncher extends Application {
         primaryStage.setWidth(initialWidth);
         primaryStage.setHeight(initialHeight);
         
-        //TODO showLoginScreen();      
-        showAccountMainScreen();
+        showLoginScreen();      
+//        showAccountMainScreen();
 //        showProfileScreen();
 //        showPopUps();
     }
@@ -71,6 +71,16 @@ public class IBankLauncher extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void showLoginScreen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("login-view.fxml"));
+        Parent root = loader.load();
+                
+        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(scene);
+        primaryStage.show();       
     }
     
     public static void main(String[] args) {
