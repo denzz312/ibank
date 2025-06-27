@@ -71,8 +71,21 @@ public class AccountScreenController {
 
     @FXML
     private void onTransferClicked() {
-        System.out.println("Transfer clicked");
-        // TODO: open transfer screen
+    	try {
+            FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("/org/example/ibank/transfer-view.fxml"));
+            Parent root = loader.load();
+            TransferController tc = loader.getController();
+            tc.setAccount(account);                   // pass the current account
+
+            Scene scene = new Scene(root, IBankLauncher.primaryStage.getWidth(), IBankLauncher.primaryStage.getHeight());
+        	IBankLauncher.primaryStage.setTitle("Transfer");
+        	IBankLauncher.primaryStage.setScene(scene);
+        	IBankLauncher.primaryStage.show();
+        
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
