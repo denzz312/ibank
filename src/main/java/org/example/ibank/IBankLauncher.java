@@ -11,10 +11,13 @@ import org.example.ibank.model.SessionManager;
 import org.example.ibank.utils.PopUpUtils;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class IBankLauncher extends Application {
 
     public static Stage primaryStage;
+    public static Locale currentLocale = Locale.FRENCH;
     private final float initialWidth = 400f;
     private final float initialHeight = 300f;
 
@@ -33,7 +36,7 @@ public class IBankLauncher extends Application {
     }
     
     public static void showAccountMainScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("account-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("account-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale));
         Parent root = loader.load();
 
         AccountScreenController controller = loader.getController();
@@ -46,7 +49,7 @@ public class IBankLauncher extends Application {
     }
 
     public static void showProfileScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("profile-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("profile-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale));
         Parent root = loader.load();
 
         ProfileController controller = loader.getController();
@@ -74,7 +77,7 @@ public class IBankLauncher extends Application {
     }
     
     public static void showLoginScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("login-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("login-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale));
         Parent root = loader.load();
                 
         Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());

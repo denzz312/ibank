@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import org.example.ibank.model.Account;
 import org.example.ibank.IBankLauncher;
@@ -26,15 +27,16 @@ public class AccountScreenController {
                 ? account.getID().substring(account.getID().length() - 4)
                 : account.getID();
         
-        accountNumberLabel.setText("Account Number: ****" + last4);
-        fundsLabel.setText("Funds: " + account.getFunds() + account.getCurrency().toString());
+        ResourceBundle bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
+        accountNumberLabel.setText(bundle.getString("account.number") + last4);
+        fundsLabel.setText(bundle.getString("account.funds") + account.getFunds() + account.getCurrency().toString());
     }
     
     @FXML
     private void onWithdrawClicked() {
         try {
-            FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("/org/example/ibank/withdraw-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ibank/withdraw-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale));
+
             Parent root = loader.load();
             WithdrawController wc = loader.getController();
             wc.setAccount(account);                   // pass the current account
@@ -52,8 +54,8 @@ public class AccountScreenController {
     @FXML
     private void onDepositClicked() {
         try {
-            FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("/org/example/ibank/deposit-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ibank/deposit-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale));
+
             Parent root = loader.load();
 
             DepositController controller = loader.getController();
@@ -72,8 +74,8 @@ public class AccountScreenController {
     @FXML
     private void onTransferClicked() {
     	try {
-            FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("/org/example/ibank/transfer-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ibank/transfer-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale));
+
             Parent root = loader.load();
             TransferController tc = loader.getController();
             tc.setAccount(account);                   // pass the current account
