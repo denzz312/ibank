@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ibank.controller.NavBarController"
+      alignment="CENTER" spacing="15" style="-fx-padding: 10;">
+    
+	<Button fx:id="homeButton" text="%nav.home" onAction="#onHomeClicked"/>
+	<Button fx:id="languageButton" text="%nav.toggleLanguage" onAction="#onToggleLanguage"/>
+	<Button fx:id="signOutButton" text="%nav.signOut" onAction="#onSignOutClicked"/>
+</HBox>

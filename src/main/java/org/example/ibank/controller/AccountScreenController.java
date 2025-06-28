@@ -27,67 +27,37 @@ public class AccountScreenController {
                 ? account.getID().substring(account.getID().length() - 4)
                 : account.getID();
         
-        ResourceBundle bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
+        ResourceBundle bundle = IBankLauncher.getBundle();
         accountNumberLabel.setText(bundle.getString("account.number") + last4);
         fundsLabel.setText(bundle.getString("account.funds") + account.getFunds() + account.getCurrency().toString());
     }
     
     @FXML
     private void onWithdrawClicked() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ibank/withdraw-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale));
-
-            Parent root = loader.load();
+    	IBankLauncher.showScreen("withdraw-view.fxml", loader  -> {
             WithdrawController wc = loader.getController();
             wc.setAccount(account);                   // pass the current account
-
-            Scene scene = new Scene(root, IBankLauncher.primaryStage.getWidth(), IBankLauncher.primaryStage.getHeight());
-        	IBankLauncher.primaryStage.setTitle("Withdraw");
-        	IBankLauncher.primaryStage.setScene(scene);
-        	IBankLauncher.primaryStage.show();
-        
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+            IBankLauncher.primaryStage.setTitle(IBankLauncher.getBundle().getString("withdraw.title"));
+    	});    	
     }
 
     @FXML
-    private void onDepositClicked() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ibank/deposit-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale));
-
-            Parent root = loader.load();
-
+    private void onDepositClicked() {   	    	
+    	IBankLauncher.showScreen("deposit-view.fxml", loader  -> {
             DepositController controller = loader.getController();
             controller.setAccount(account);
-            
-            Scene scene = new Scene(root, IBankLauncher.primaryStage.getWidth(), IBankLauncher.primaryStage.getHeight());
-            IBankLauncher.primaryStage.setTitle("Deposit");
-            IBankLauncher.primaryStage.setScene(scene);
-            IBankLauncher.primaryStage.show();
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+            IBankLauncher.primaryStage.setTitle(IBankLauncher.getBundle().getString("deposit.title"));
+    	});    	
     }
 
     @FXML
     private void onTransferClicked() {
-    	try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ibank/transfer-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale));
-
-            Parent root = loader.load();
+    	
+    	IBankLauncher.showScreen("transfer-view.fxml", loader  -> {
             TransferController tc = loader.getController();
-            tc.setAccount(account);                   // pass the current account
-
-            Scene scene = new Scene(root, IBankLauncher.primaryStage.getWidth(), IBankLauncher.primaryStage.getHeight());
-        	IBankLauncher.primaryStage.setTitle("Transfer");
-        	IBankLauncher.primaryStage.setScene(scene);
-        	IBankLauncher.primaryStage.show();
-        
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+            tc.setAccount(account);
+            IBankLauncher.primaryStage.setTitle(IBankLauncher.getBundle().getString("transfer.title"));
+    	});    	
     }
 
     @FXML

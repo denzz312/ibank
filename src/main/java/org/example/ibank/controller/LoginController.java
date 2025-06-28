@@ -24,7 +24,7 @@ public class LoginController {
         String pin  = pinField.getText().trim();
 
         if (card.isEmpty() || pin.isEmpty()) {
-            statusLabel.setText("Please enter both Card Number and PIN.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.missingLoginInput"));
             return;
         }
 
@@ -36,7 +36,7 @@ public class LoginController {
         } 
         else 
         {
-            statusLabel.setText("Invalid credentials.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.invalidLogin"));
         }
     }
 }

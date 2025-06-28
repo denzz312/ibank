@@ -23,7 +23,7 @@ public class WithdrawController {
     /*---- public hook ----*/
     public void setAccount(Account account) {
         this.account = account;
-        bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
+        bundle = IBankLauncher.getBundle();
     }
 
     /*---- preset buttons ----*/

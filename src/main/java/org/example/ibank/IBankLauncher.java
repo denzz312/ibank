@@ -13,14 +13,22 @@ import org.example.ibank.utils.PopUpUtils;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class IBankLauncher extends Application {
 
     public static Stage primaryStage;
-    public static Locale currentLocale = Locale.FRENCH;
+    private static Locale currentLocale = Locale.FRENCH;
+    private static Consumer<FXMLLoader> currentScreenLoader;
+    private static String currentFxmlPath;
     private final float initialWidth = 400f;
     private final float initialHeight = 300f;
 
+    public static ResourceBundle getBundle() 
+    {
+        return ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale);
+	}
+    
     @Override
     public void start(Stage stage) throws IOException {
     	
@@ -35,32 +43,49 @@ public class IBankLauncher extends Application {
 //        showPopUps();
     }
     
-    public static void showAccountMainScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("account-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale));
-        Parent root = loader.load();
+    public static void showScreen(String fxmlPath, Consumer<FXMLLoader> afterLoad) {
+        try {
+            currentFxmlPath = fxmlPath;
+            currentScreenLoader = afterLoad;
+            
+            FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource(fxmlPath), getBundle());
+            Parent root = loader.load();
 
-        AccountScreenController controller = loader.getController();
-        controller.setAccount(SessionManager.currentAccount);
+            if (afterLoad != null) {
+                afterLoad.accept(loader);
+            }
+            
+            Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
-        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
-        primaryStage.setTitle("Bank Account");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void showAccountMainScreen() throws IOException {    	
+        showScreen("account-view.fxml", loader -> {
+            AccountScreenController controller = loader.getController();
+            controller.setAccount(SessionManager.currentAccount);
+            primaryStage.setTitle(getBundle().getString("account.title"));
+        });
     }
 
     public static void showProfileScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("profile-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale));
-        Parent root = loader.load();
-
-        ProfileController controller = loader.getController();
-        controller.setAccounts(SessionManager.currentCustomer.accounts);
-
-        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
-        primaryStage.setTitle("Main Profile");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        showScreen("profile-view.fxml", loader -> {
+            ProfileController controller = loader.getController();
+            controller.setAccounts(SessionManager.currentCustomer.accounts);
+            primaryStage.setTitle(getBundle().getString("profile.title"));
+        });
     }
 
+    public static void showLoginScreen() throws IOException {
+        showScreen("login-view.fxml", loader -> {
+            primaryStage.setTitle(getBundle().getString("login.title"));
+        });
+    }
+    
     public void showPopUps() {
         try {
             PopUpUtils.showSuccessPopUp("Operation completed successfully!");
@@ -75,18 +100,28 @@ public class IBankLauncher extends Application {
             e.printStackTrace();
         }
     }
-    
-    public static void showLoginScreen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(IBankLauncher.class.getResource("login-view.fxml"), ResourceBundle.getBundle("org.example.ibank.i18n.Messages", currentLocale));
-        Parent root = loader.load();
-                
-        Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
-        primaryStage.setTitle("Login");
-        primaryStage.setScene(scene);
-        primaryStage.show();       
-    }
+        
     
     public static void main(String[] args) {
         launch();
     }
+    
+    public static void toggleLanguage()
+    {
+    	if (currentLocale == Locale.FRENCH)
+    	{
+    		currentLocale = Locale.ENGLISH;
+    	}
+    	else 
+    	{
+        	currentLocale = Locale.FRENCH;
+		}
+    	
+    	refreshCurrentScreen();
+    }
+    
+    public static void refreshCurrentScreen() 
+    {
+        showScreen(currentFxmlPath, currentScreenLoader);		
+	}
 }

@@ -26,7 +26,7 @@ public class ProfileController {
             accountList.getChildren().add(noAccountsLabel);
             return;
         }
-        ResourceBundle bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
+        ResourceBundle bundle = IBankLauncher.getBundle();
 
         for (Account account : accounts) {
             String type = bundle.getString("profile." + account.getAccountType().name());

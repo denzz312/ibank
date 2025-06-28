@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.ibank.controller.DepositController"
-      alignment="CENTER"
-      spacing="15">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.ibank.controller.DepositController">
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+    <!-- Center Content -->
+    <center>
+        <VBox alignment="CENTER" spacing="15">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
 
-    <Label text="%deposit.title"
-           style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <Label text="%deposit.title"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-    <HBox spacing="10" alignment="CENTER">
-        <TextField fx:id="amountField" promptText="%deposit.amount" prefWidth="120"/>
-        <Button text="%deposit.confirm" onAction="#onDepositClicked"/>
-    </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <TextField fx:id="amountField" promptText="%deposit.amount" prefWidth="120"/>
+                <Button text="%deposit.confirm" onAction="#onDepositClicked"/>
+            </HBox>
 
-    <Label fx:id="statusLabel" textFill="darkgreen"/>
-</VBox>
+            <Label fx:id="statusLabel" textFill="darkgreen"/>
+        </VBox>
+    </center>
+
+    <!-- Bottom Navigation -->
+    <bottom>
+        <fx:include source="navigation-bar.fxml"/>
+    </bottom>
+
+</BorderPane>

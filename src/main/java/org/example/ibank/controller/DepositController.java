@@ -21,7 +21,7 @@ public class DepositController {
 
     public void setAccount(Account account) {
         this.account = account;
-        bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
+        bundle = IBankLauncher.getBundle();
     }
 
     @FXML
