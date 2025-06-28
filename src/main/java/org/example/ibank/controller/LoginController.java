@@ -11,6 +11,7 @@ import org.example.ibank.IBankLauncher;
 import org.example.ibank.model.AccountsDatabase;
 import org.example.ibank.model.CustomerAuthenticator;
 import org.example.ibank.model.SessionManager;
+import org.example.ibank.utils.PopUpUtils;
 
 public class LoginController {
 
@@ -24,7 +25,7 @@ public class LoginController {
         String pin  = pinField.getText().trim();
 
         if (card.isEmpty() || pin.isEmpty()) {
-            statusLabel.setText(IBankLauncher.getBundle().getString("error.missingLoginInput"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.missingLoginInput"));
             return;
         }
 
@@ -36,7 +37,7 @@ public class LoginController {
         } 
         else 
         {
-            statusLabel.setText(IBankLauncher.getBundle().getString("error.invalidLogin"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidLogin"));
         }
     }
 }

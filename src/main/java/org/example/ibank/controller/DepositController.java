@@ -3,6 +3,7 @@ package org.example.ibank.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.ibank.model.Account;
+import org.example.ibank.utils.PopUpUtils;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -29,12 +30,12 @@ public class DepositController {
         try {
             float amount = Float.parseFloat(amountField.getText().trim());
             if (amount <= 0) {
-                statusLabel.setText(bundle.getString("error.negativeNumber"));
+    			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"));
                 return;
             }
             if (amount%5 != 0)
             {
-                statusLabel.setText(bundle.getString("error.invalidDenomination"));
+    			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
                 return;
             }
             account.increaseFundsBy(amount);
@@ -43,7 +44,7 @@ public class DepositController {
             IBankLauncher.showAccountMainScreen();
 
         } catch (NumberFormatException e) {
-            statusLabel.setText(bundle.getString("error.invalidNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"));
         }
     }
 }

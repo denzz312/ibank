@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 import org.example.ibank.model.Account;
+import org.example.ibank.utils.PopUpUtils;
 import org.example.ibank.IBankLauncher;
 
 public class WithdrawController {
@@ -48,19 +49,19 @@ public class WithdrawController {
         } 
         catch (NumberFormatException e) 
         {
-            statusLabel.setText(bundle.getString("error.invalidNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"));
         }
     }
 
     private void withdraw(float amount) throws IOException {
         if (amount <= 0) 
         {
-            statusLabel.setText(bundle.getString("error.negativeNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"));
             return;
         }
         if (amount%5 != 0)
         {
-            statusLabel.setText(bundle.getString("error.invalidDenomination"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
             return;
         }
         if (account.tryDecreaseFundsBy(amount)) 
@@ -69,7 +70,7 @@ public class WithdrawController {
         } 
         else 
         {
-            statusLabel.setText(bundle.getString("error.insufficientFunds"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.insufficientFunds"));
         }
     }
 }

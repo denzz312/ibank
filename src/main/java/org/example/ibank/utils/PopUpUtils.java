@@ -5,12 +5,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 import org.example.ibank.controller.ConfirmationPopUpController;
 import org.example.ibank.controller.ErrorPopUpController;
 import org.example.ibank.controller.SuccessPopUpController;
 
 public class PopUpUtils {
-    public static void showSuccessPopUp(String message) throws Exception {
+    public static void showSuccessPopUp(String message) throws IOException {
         FXMLLoader loader = new FXMLLoader(PopUpUtils.class.getResource("/org/example/ibank/popups/success-popup.fxml"));
         Parent root = loader.load();
         SuccessPopUpController controller = loader.getController();
@@ -23,7 +26,7 @@ public class PopUpUtils {
         dialog.showAndWait();
     }
 
-    public static void showErrorPopUp(String message) throws Exception {
+    public static void showErrorPopUp(String message) throws IOException {
         FXMLLoader loader = new FXMLLoader(PopUpUtils.class.getResource("/org/example/ibank/popups/error-popup.fxml"));
         Parent root = loader.load();
         ErrorPopUpController controller = loader.getController();
@@ -36,7 +39,7 @@ public class PopUpUtils {
         dialog.showAndWait();
     }
 
-    public static boolean showConfirmationPopUp(String message) throws Exception {
+    public static boolean showConfirmationPopUp(String message) throws IOException {
         FXMLLoader loader = new FXMLLoader(PopUpUtils.class.getResource("/org/example/ibank/popups/confirmation-popup.fxml"));
         Parent root = loader.load();
         ConfirmationPopUpController controller = loader.getController();
