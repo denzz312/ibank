@@ -10,7 +10,7 @@ public class NavBarController {
 
     @FXML
     private void onHomeClicked() throws IOException {
-        IBankLauncher.showAccountMainScreen();    
+        IBankLauncher.showProfileScreen();    
     }
 
     @FXML

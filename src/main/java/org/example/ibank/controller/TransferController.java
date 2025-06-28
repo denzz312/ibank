@@ -29,7 +29,7 @@ public class TransferController {
         String amountText = amountField.getText().trim();
 
         if (targetID.isEmpty() || amountText.isEmpty()) {
-            statusLabel.setText("Please enter both fields.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.missingTransferInput"));
             return;
         }
 
@@ -38,12 +38,12 @@ public class TransferController {
         try {
             amount = Float.parseFloat(amountText);
         } catch (NumberFormatException e) {
-            statusLabel.setText("Invalid amount.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.invalidNumber"));
             return;
         }
 
         if (amount <= 0) {
-            statusLabel.setText("Amount must be greater than zero.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.negativeNumber"));
             return;
         }
         
@@ -51,13 +51,19 @@ public class TransferController {
 
         if (targetAccount == null)
         {
-            statusLabel.setText("Target Account is invalid.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.invalidTargetAccount"));
+            return;
+        }
+        
+        if (currentAccount.getID().equals(targetAccount.getID()))
+        {
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.transferSameAccount"));
             return;
         }
         
         if (!SessionManager.currentCustomer.tryTransferFunds(amount, currentAccount, targetAccount, true))
         {
-            statusLabel.setText("Insufficient Funds.");
+            statusLabel.setText(IBankLauncher.getBundle().getString("error.insufficientFunds"));
             return;
         }
         
