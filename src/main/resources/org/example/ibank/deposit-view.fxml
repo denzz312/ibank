@@ -15,12 +15,12 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Deposit Funds"
+    <Label text="%deposit.title"
            style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
     <HBox spacing="10" alignment="CENTER">
-        <TextField fx:id="amountField" promptText="Enter amount" prefWidth="120"/>
-        <Button text="Confirm" onAction="#onDepositClicked"/>
+        <TextField fx:id="amountField" promptText="%deposit.amount" prefWidth="120"/>
+        <Button text="%deposit.confirm" onAction="#onDepositClicked"/>
     </HBox>
 
     <Label fx:id="statusLabel" textFill="darkgreen"/>

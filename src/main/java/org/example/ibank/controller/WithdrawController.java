@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import org.example.ibank.model.Account;
 import org.example.ibank.IBankLauncher;
@@ -17,10 +18,12 @@ public class WithdrawController {
 
     // business data
     private Account account;
-
+    private ResourceBundle bundle;
+    
     /*---- public hook ----*/
     public void setAccount(Account account) {
         this.account = account;
+        bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
     }
 
     /*---- preset buttons ----*/
@@ -45,30 +48,28 @@ public class WithdrawController {
         } 
         catch (NumberFormatException e) 
         {
-            statusLabel.setText("Enter a valid number.");
+            statusLabel.setText(bundle.getString("error.invalidNumber"));
         }
     }
 
     private void withdraw(float amount) throws IOException {
         if (amount <= 0) 
         {
-            statusLabel.setText("Amount must be positive.");
+            statusLabel.setText(bundle.getString("error.negativeNumber"));
             return;
         }
         if (amount%5 != 0)
         {
-            statusLabel.setText("Amount must be of denominations $5, $10, $20, $50 or $100");
+            statusLabel.setText(bundle.getString("error.invalidDenomination"));
             return;
         }
         if (account.tryDecreaseFundsBy(amount)) 
         {
-            statusLabel.setText("Withdrawn $" + amount);
-            //TODO: maybe use confirmation screen
             IBankLauncher.showAccountMainScreen();
         } 
         else 
         {
-            statusLabel.setText("Insufficient funds.");
+            statusLabel.setText(bundle.getString("error.insufficientFunds"));
         }
     }
 }

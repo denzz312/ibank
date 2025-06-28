@@ -6,10 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import org.example.ibank.IBankLauncher;
 import org.example.ibank.model.Account;
-import org.example.ibank.model.AccountsDatabase;
 import org.example.ibank.model.SessionManager;
 
 public class ProfileController {
@@ -26,9 +26,10 @@ public class ProfileController {
             accountList.getChildren().add(noAccountsLabel);
             return;
         }
+        ResourceBundle bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
 
         for (Account account : accounts) {
-            String type = account.getAccountType().name();
+            String type = bundle.getString("profile." + account.getAccountType().name());
             String last4 = account.getID().length() > 4
                     ? account.getID().substring(account.getID().length() - 4)
                     : account.getID();

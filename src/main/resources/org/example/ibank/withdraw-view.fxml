@@ -15,7 +15,7 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Withdraw Funds"
+    <Label text="%withdraw.title"
            style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
     <GridPane hgap="10" vgap="10" alignment="CENTER">
@@ -74,7 +74,7 @@
             </GridPane.margin>
         </Button>
 
-        <Button text="Custom"
+        <Button text="%withdraw.custom"
                 onAction="#showCustom"
                 GridPane.rowIndex="2" GridPane.columnIndex="1"
                 GridPane.columnSpan="2"
@@ -90,8 +90,8 @@
           spacing="10"
           visible="false"
           managed="false">
-        <TextField fx:id="customAmountField" promptText="Amount" prefWidth="120"/>
-        <Button text="Confirm" onAction="#withdrawCustom"/>
+        <TextField fx:id="customAmountField" promptText="%withdraw.amount" prefWidth="120"/>
+        <Button text="%withdraw.confirm" onAction="#withdrawCustom"/>
     </HBox>
 
     <Label fx:id="statusLabel" textFill="darkred"/>

@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.ibank.controller.AccountScreenController" spacing="10" alignment="TOP_CENTER">
-    <Label text="Account Details" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-    <Label fx:id="accountNumberLabel" text="Account Number: ---" />
-    <Label fx:id="fundsLabel" text="Funds: ---" />
+    <Label text="%account.title" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <Label fx:id="accountNumberLabel" text="%account.number" />
+    <Label fx:id="fundsLabel" text="%account.funds" />
     
 <GridPane hgap="10" vgap="10" alignment="CENTER">
     <columnConstraints>
@@ -18,22 +18,22 @@
         <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
     </rowConstraints>
 
-    <Button text="Withdraw"
+    <Button text="%account.withdraw"
             onAction="#onWithdrawClicked"
             GridPane.rowIndex="0" GridPane.columnIndex="0"
             maxWidth="500" maxHeight="500" prefHeight="50" />
 
-    <Button text="Deposit"
+    <Button text="%account.deposit"
             onAction="#onDepositClicked"
             GridPane.rowIndex="0" GridPane.columnIndex="1"
             maxWidth="500" maxHeight="500" prefHeight="50" />
 
-    <Button text="Transfer"
+    <Button text="%account.transfer"
             onAction="#onTransferClicked"
             GridPane.rowIndex="1" GridPane.columnIndex="0"
             maxWidth="500" maxHeight="500" prefHeight="50" />
 
-    <Button text="Transaction History"
+    <Button text="%account.transactionHistory"
             onAction="#onTransactionHistoryClicked"
             GridPane.rowIndex="1" GridPane.columnIndex="1"
             maxWidth="500" maxHeight="500" prefHeight="50" />

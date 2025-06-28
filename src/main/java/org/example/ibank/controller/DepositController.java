@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import org.example.ibank.model.Account;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import org.example.ibank.IBankLauncher;
 
@@ -16,9 +17,11 @@ public class DepositController {
     private Label statusLabel;
 
     private Account account;
+    private ResourceBundle bundle;
 
     public void setAccount(Account account) {
         this.account = account;
+        bundle = ResourceBundle.getBundle("org.example.ibank.i18n.Messages", IBankLauncher.currentLocale);
     }
 
     @FXML
@@ -26,12 +29,12 @@ public class DepositController {
         try {
             float amount = Float.parseFloat(amountField.getText().trim());
             if (amount <= 0) {
-                statusLabel.setText("Amount must be greater than 0.");
+                statusLabel.setText(bundle.getString("error.negativeNumber"));
                 return;
             }
             if (amount%5 != 0)
             {
-                statusLabel.setText("Amount must be of denominations $5, $10, $20, $50 or $100");
+                statusLabel.setText(bundle.getString("error.invalidDenomination"));
                 return;
             }
             account.increaseFundsBy(amount);
@@ -40,7 +43,7 @@ public class DepositController {
             IBankLauncher.showAccountMainScreen();
 
         } catch (NumberFormatException e) {
-            statusLabel.setText("Enter a valid number.");
+            statusLabel.setText(bundle.getString("error.invalidNumber"));
         }
     }
 }

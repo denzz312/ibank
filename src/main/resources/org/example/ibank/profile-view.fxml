@@ -10,7 +10,7 @@
       spacing="20"
       style="-fx-padding: 20;">
 
-    <Label text="Your Accounts" style="-fx-font-size: 18px;" />
+    <Label text="%profile.accounts" style="-fx-font-size: 18px;" />
 
     <VBox fx:id="accountList" spacing="10" alignment="TOP_LEFT" />
 </VBox>
