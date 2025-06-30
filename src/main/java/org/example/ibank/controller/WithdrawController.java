@@ -2,18 +2,18 @@ package org.example.ibank.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.VBox;
 import org.example.ibank.model.Account;
 import org.example.ibank.utils.PopUpUtils;
 import org.example.ibank.IBankLauncher;
 
 public class WithdrawController {
 
-    @FXML private HBox customPane;
+    @FXML private VBox customPane;
     @FXML private TextField customAmountField;
     @FXML private Label statusLabel;
 

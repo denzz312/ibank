@@ -7,32 +7,29 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.ibank.controller.TransferController">
+            fx:controller="org.example.ibank.controller.TransferController"
+            stylesheets="@css/main-style.css">
 
     <center>
-        <VBox alignment="CENTER" spacing="15">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+        <VBox alignment="CENTER" spacing="15" styleClass="vbox-container">
 
-            <Label text="%transfer.title"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <Label text="%transfer.title" styleClass="title"/>
 
             <HBox spacing="10" alignment="CENTER">
                 <Label text="%transfer.account" minWidth="100"/>
-                <TextField fx:id="targetAccountField" promptText="%transfer.accountID" prefWidth="200"/>
+                <TextField fx:id="targetAccountField" promptText="%transfer.accountID" styleClass="text-field"/>
             </HBox>
 
             <HBox spacing="10" alignment="CENTER">
                 <Label text="%transfer.amount" minWidth="100"/>
-                <TextField fx:id="amountField" promptText="%transfer.amountPrompt" prefWidth="200"/>
+                <TextField fx:id="amountField" promptText="%transfer.amountPrompt" styleClass="text-field"/>
             </HBox>
 
             <Button text="%transfer.button"
                     onAction="#onTransferClicked"
-                    prefWidth="150"/>
+                    styleClass="button action-button"/>
 
-            <Label fx:id="statusLabel" textFill="darkred"/>
+            <Label fx:id="statusLabel" styleClass="label status"/>
         </VBox>
     </center>
 

@@ -21,8 +21,8 @@ public class IBankLauncher extends Application {
     private static Locale currentLocale = Locale.FRENCH;
     private static Consumer<FXMLLoader> currentScreenLoader;
     private static String currentFxmlPath;
-    private final float initialWidth = 400f;
-    private final float initialHeight = 300f;
+    private final static double FIXED_WIDTH = 800;
+    private final static double FIXED_HEIGHT = 600;
 
     public static ResourceBundle getBundle() 
     {
@@ -34,8 +34,8 @@ public class IBankLauncher extends Application {
     	
     	SessionManager.StartDummySession();
         primaryStage = stage;
-        primaryStage.setWidth(initialWidth);
-        primaryStage.setHeight(initialHeight);
+        primaryStage.setWidth(FIXED_WIDTH);
+        primaryStage.setHeight(FIXED_HEIGHT);
         
         showLoginScreen();      
 //        showAccountMainScreen();
@@ -54,11 +54,11 @@ public class IBankLauncher extends Application {
             if (afterLoad != null) {
                 afterLoad.accept(loader);
             }
-            
-            Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight());
+
+            Scene scene = new Scene(root, FIXED_WIDTH, FIXED_HEIGHT);
+            primaryStage.centerOnScreen();
             primaryStage.setScene(scene);
             primaryStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
