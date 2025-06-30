@@ -37,7 +37,7 @@
 /* Buttons */
 .button {
     -fx-pref-width: 350px;
-    -fx-pref-height: 50px;
+    -fx-pref-height: 70px;
     -fx-background-color: #007ACC;
     -fx-text-fill: white;
     -fx-font-size: 16px;
@@ -76,7 +76,7 @@
 
 .button.action-button {
     -fx-pref-width: 200px;
-    -fx-pref-height: 44px;
+    -fx-pref-height: 70px;
     -fx-font-size: 15px;
     -fx-background-color: #007ACC;
     -fx-text-fill: white;
