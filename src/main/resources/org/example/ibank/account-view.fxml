@@ -13,8 +13,8 @@
         <VBox alignment="TOP_CENTER" styleClass="vbox-container">
             <Label text="%account.title" styleClass="title"/>
 
-            <Label fx:id="accountNumberLabel" text="%account.number"/>
-            <Label fx:id="fundsLabel" text="%account.funds"/>
+            <Label fx:id="accountNumberLabel" text="%account.number" styleClass="account-info-label"/>
+            <Label fx:id="fundsLabel" text="%account.funds" styleClass="account-info-label"/>
 
             <GridPane hgap="15" vgap="15" alignment="CENTER">
                 <columnConstraints>
