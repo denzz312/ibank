@@ -5,46 +5,50 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.ibank.controller.AccountScreenController">
+            fx:controller="org.example.ibank.controller.AccountScreenController"
+            stylesheets="@css/main-style.css">
 
     <!-- Center content -->
     <center>
-        <VBox spacing="10" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-            <Label text="%account.title"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <VBox alignment="TOP_CENTER" styleClass="vbox-container">
+            <Label text="%account.title" styleClass="title"/>
 
             <Label fx:id="accountNumberLabel" text="%account.number"/>
             <Label fx:id="fundsLabel" text="%account.funds"/>
 
-            <GridPane hgap="10" vgap="10" alignment="CENTER">
+            <GridPane hgap="15" vgap="15" alignment="CENTER">
                 <columnConstraints>
                     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS"/>
                     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS"/>
                 </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
-                    <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
-                </rowConstraints>
 
-                <Button text="%account.withdraw"
+                <Button
+                        text="%account.withdraw"
                         onAction="#onWithdrawClicked"
-                        GridPane.rowIndex="0" GridPane.columnIndex="0"
-                        maxWidth="500" maxHeight="500" prefHeight="50"/>
+                        styleClass="button"
+                        GridPane.rowIndex="0"
+                        GridPane.columnIndex="0"/>
 
-                <Button text="%account.deposit"
+                <Button
+                        text="%account.deposit"
                         onAction="#onDepositClicked"
-                        GridPane.rowIndex="0" GridPane.columnIndex="1"
-                        maxWidth="500" maxHeight="500" prefHeight="50"/>
+                        styleClass="button"
+                        GridPane.rowIndex="0"
+                        GridPane.columnIndex="1"/>
 
-                <Button text="%account.transfer"
+                <Button
+                        text="%account.transfer"
                         onAction="#onTransferClicked"
-                        GridPane.rowIndex="1" GridPane.columnIndex="0"
-                        maxWidth="500" maxHeight="500" prefHeight="50"/>
+                        styleClass="button"
+                        GridPane.rowIndex="1"
+                        GridPane.columnIndex="0"/>
 
-                <Button text="%account.transactionHistory"
+                <Button
+                        text="%account.transactionHistory"
                         onAction="#onTransactionHistoryClicked"
-                        GridPane.rowIndex="1" GridPane.columnIndex="1"
-                        maxWidth="500" maxHeight="500" prefHeight="50"/>
+                        styleClass="button"
+                        GridPane.rowIndex="1"
+                        GridPane.columnIndex="1"/>
             </GridPane>
         </VBox>
     </center>
@@ -53,5 +57,5 @@
     <bottom>
         <fx:include source="navigation-bar.fxml"/>
     </bottom>
-
 </BorderPane>
+

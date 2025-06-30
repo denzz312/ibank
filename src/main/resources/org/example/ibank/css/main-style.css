@@ -1,0 +1,78 @@
+/* main-style.css */
+
+/* Root container */
+.root {
+    -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #222;
+}
+
+/* Padding and spacing variables (used conceptually) */
+/* Use uniform padding on all major containers */
+.vbox-container {
+    -fx-padding: 25;
+    -fx-spacing: 20;
+}
+
+/* Labels */
+.label.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-padding: 10 0 20 0;
+    -fx-text-fill: #222;
+}
+
+.label.status {
+    -fx-font-size: 14px;
+    -fx-text-fill: darkred;
+}
+
+/* Buttons */
+.button {
+    -fx-pref-width: 350px;
+    -fx-pref-height: 50px;
+    -fx-background-color: #007ACC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #005A9E;
+}
+
+.button:pressed {
+    -fx-background-color: #004377;
+}
+
+.nav-button {
+    -fx-pref-width: 140px;
+    -fx-pref-height: 38px;
+    -fx-background-color: transparent;
+    -fx-border-color: #007ACC;
+    -fx-border-width: 2;
+    -fx-text-fill: #007ACC;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+    -fx-padding: 0 10 0 10;
+    -fx-transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    -fx-background-color: #007ACC;
+    -fx-text-fill: white;
+}
+
+/* Text Fields and Password Fields */
+.text-field,
+.password-field {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 16px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
