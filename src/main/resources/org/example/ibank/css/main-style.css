@@ -66,6 +66,20 @@
     -fx-text-fill: white;
 }
 
+.button.action-button {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 44px;
+    -fx-font-size: 15px;
+    -fx-background-color: #007ACC;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.button.action-button:hover {
+    -fx-background-color: #005A9E;
+}
+
 /* Text Fields and Password Fields */
 .text-field,
 .password-field {

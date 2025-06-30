@@ -6,26 +6,26 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.ibank.controller.DepositController">
+            fx:controller="org.example.ibank.controller.DepositController"
+            stylesheets="@css/main-style.css">
 
     <!-- Center Content -->
     <center>
-        <VBox alignment="CENTER" spacing="15">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+        <VBox alignment="CENTER" spacing="15" styleClass="vbox-container">
 
-            <Label text="%deposit.title"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <Label text="%deposit.title" styleClass="title"/>
 
             <HBox spacing="10" alignment="CENTER">
-                <TextField fx:id="amountField" promptText="%deposit.amount" prefWidth="120"/>
-                <Button text="%deposit.confirm" onAction="#onDepositClicked"/>
+                <Label text="%deposit.amount" minWidth="100"/>
+                <TextField fx:id="amountField" promptText="%deposit.amount" styleClass="text-field"/>
             </HBox>
 
-            <Label fx:id="statusLabel" textFill="darkgreen"/>
+            <Button text="%deposit.confirm" onAction="#onDepositClicked" styleClass="button action-button"/>
+
+            <Label fx:id="statusLabel" styleClass="label status"/>
         </VBox>
     </center>
+
 
     <!-- Bottom Navigation -->
     <bottom>
