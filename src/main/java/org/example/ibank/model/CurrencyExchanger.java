@@ -7,6 +7,10 @@ public class CurrencyExchanger {
 	private static final String DB_URL = "jdbc:sqlite:data/bankDatabase.db";
 
 	public static float getExchangeRate(Currency source, Currency target) {
+		if (source.equals(target)) {
+			return 1.0f;
+		}
+
 		String sql = "SELECT rate FROM exchange_rates WHERE source_currency = ? AND target_currency = ?";
 
 		try (Connection conn = DriverManager.getConnection(DB_URL);
