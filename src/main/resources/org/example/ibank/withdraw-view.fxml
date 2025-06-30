@@ -50,10 +50,10 @@
                         GridPane.rowIndex="2" GridPane.columnIndex="1"/>
             </GridPane>
 
-            <HBox fx:id="customPane" alignment="CENTER" spacing="10" visible="false" managed="false">
-                <TextField fx:id="customAmountField" promptText="%withdraw.amount" styleClass="text-field"/>
+            <VBox fx:id="customPane" alignment="CENTER" spacing="10" visible="false" managed="false" fillWidth="false">
+                <TextField fx:id="customAmountField" promptText="%withdraw.amount" styleClass="text-field" prefWidth="200"/>
                 <Button text="%withdraw.confirm" onAction="#withdrawCustom" styleClass="button action-button"/>
-            </HBox>
+            </VBox>
 
             <Label fx:id="statusLabel" styleClass="label status"/>
         </VBox>
