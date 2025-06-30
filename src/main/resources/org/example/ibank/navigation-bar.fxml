@@ -3,10 +3,13 @@
 <?import javafx.scene.layout.*?>
 
 <HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.ibank.controller.NavBarController"
-      alignment="CENTER" spacing="15" style="-fx-padding: 10;">
-    
-	<Button fx:id="homeButton" text="%nav.home" onAction="#onHomeClicked"/>
-	<Button fx:id="languageButton" text="%nav.toggleLanguage" onAction="#onToggleLanguage"/>
-	<Button fx:id="signOutButton" text="%nav.signOut" onAction="#onSignOutClicked"/>
+	  fx:controller="org.example.ibank.controller.NavBarController"
+	  alignment="CENTER" spacing="15"
+	  style="-fx-padding: 10 25 10 25;"
+	  stylesheets="@css/main-style.css">
+
+	<Button fx:id="homeButton" text="%nav.home" onAction="#onHomeClicked" styleClass="nav-button"/>
+	<Button fx:id="languageButton" text="%nav.toggleLanguage" onAction="#onToggleLanguage" styleClass="nav-button"/>
+	<Button fx:id="signOutButton" text="%nav.signOut" onAction="#onSignOutClicked" styleClass="nav-button"/>
 </HBox>
+

@@ -6,17 +6,16 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.ibank.controller.ProfileController">
+            fx:controller="org.example.ibank.controller.ProfileController"
+            stylesheets="@css/main-style.css">
 
-    <!-- Center Content -->
     <center>
-        <VBox alignment="TOP_LEFT" spacing="20" style="-fx-padding: 20;">
-            <Label text="%profile.accounts" style="-fx-font-size: 18px;" />
-            <VBox fx:id="accountList" spacing="10" alignment="TOP_LEFT" />
+        <VBox alignment="TOP_LEFT" styleClass="vbox-container">
+            <Label text="%profile.accounts" styleClass="title"/>
+            <VBox fx:id="accountList" spacing="10" alignment="TOP_LEFT"/>
         </VBox>
     </center>
 
-    <!-- Bottom Navigation -->
     <bottom>
         <fx:include source="navigation-bar.fxml"/>
     </bottom>
