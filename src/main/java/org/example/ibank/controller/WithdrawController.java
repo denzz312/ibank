@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.layout.VBox;
 import org.example.ibank.model.Account;
+import org.example.ibank.model.Customer;
 import org.example.ibank.model.SessionManager;
 import org.example.ibank.utils.PopUpUtils;
 import org.example.ibank.IBankLauncher;
@@ -70,6 +71,14 @@ public class WithdrawController {
 
         if (!isConfirmed) return;
 
+        float withdrawnToday = SessionManager.currentCustomer.getWithdrawnToday(account);
+        System.out.println("WithdrawnToday: " + withdrawnToday);
+        if (withdrawnToday + amount > Customer.DAILY_WITHDRAWAL_LIMIT) {
+            System.out.println("Daily withdrawal limit exceeded.");
+
+            PopUpUtils.showErrorPopUp(bundle.getString("error.dailyWithdrawalLimitExceeded"), bundle);
+            return;
+        }
 
         if (SessionManager.currentCustomer.tryWithdrawFrom(amount, account)) 
         {

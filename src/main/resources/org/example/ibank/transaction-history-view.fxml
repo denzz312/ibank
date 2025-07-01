@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.ibank.controller.TransactionHistoryController"
+            stylesheets="@css/main-style.css">
+
+    <!-- Center Content -->
+    <center>
+        <VBox alignment="CENTER" spacing="15" styleClass="vbox-container">
+
+            <Label text="%transaction.history.title" styleClass="title"/>
+
+            <TableView fx:id="transactionTable"
+                       prefHeight="300"
+                       prefWidth="560"
+                       styleClass="table-view-custom-table">
+                <columns>
+                    <TableColumn fx:id="sourceColumn" text="%transaction.source" prefWidth="110" styleClass="custom-column"/>
+                    <TableColumn fx:id="targetColumn" text="%transaction.target" prefWidth="110" styleClass="custom-column"/>
+                    <TableColumn fx:id="amountColumn" text="%transaction.amount" prefWidth="80" styleClass="custom-column"/>
+                    <TableColumn fx:id="dateColumn" text="%transaction.date" prefWidth="140" styleClass="custom-column"/>
+                    <TableColumn fx:id="typeColumn" text="%transaction.type" prefWidth="100" styleClass="custom-column"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+    <!-- Bottom Navigation -->
+    <bottom>
+        <fx:include source="navigation-bar.fxml"/>
+    </bottom>
+
+</BorderPane>
