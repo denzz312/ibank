@@ -30,7 +30,7 @@ public class TransferController {
         String amountText = amountField.getText().trim();
 
         if (targetID.isEmpty() || amountText.isEmpty()) {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.missingTransferInput"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.missingTransferInput"), IBankLauncher.getBundle());
             return;
         }
 
@@ -39,12 +39,12 @@ public class TransferController {
         try {
             amount = Float.parseFloat(amountText);
         } catch (NumberFormatException e) {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidNumber"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidNumber"), IBankLauncher.getBundle() );
             return;
         }
 
         if (amount <= 0) {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.negativeNumber"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.negativeNumber"), IBankLauncher.getBundle() );
             return;
         }
         
@@ -52,19 +52,19 @@ public class TransferController {
 
         if (targetAccount == null)
         {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidTargetAccount"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidTargetAccount"), IBankLauncher.getBundle() );
             return;
         }
         
         if (currentAccount.getID().equals(targetAccount.getID()))
         {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.transferSameAccount"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.transferSameAccount"), IBankLauncher.getBundle() );
             return;
         }
         
         if (!SessionManager.currentCustomer.tryTransferFunds(amount, currentAccount, targetAccount, true))
         {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.insufficientFunds"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.insufficientFunds"), IBankLauncher.getBundle());
             return;
         }
         

@@ -50,28 +50,35 @@ public class WithdrawController {
         } 
         catch (NumberFormatException e) 
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"), bundle);
         }
     }
 
     private void withdraw(float amount) throws IOException {
         if (amount <= 0) 
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"), bundle);
             return;
         }
         if (amount%5 != 0)
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"), bundle);
             return;
         }
+
+        boolean isConfirmed = PopUpUtils.showConfirmationPopUp("Withdraw $" + amount + " from account " + account.getID() + "?", bundle);
+
+        if (!isConfirmed) return;
+
+
         if (SessionManager.currentCustomer.tryWithdrawFrom(amount, account)) 
         {
             IBankLauncher.showAccountMainScreen();
         } 
         else 
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.insufficientFunds"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.insufficientFunds"), bundle );
+            return;
         }
     }
 }

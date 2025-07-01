@@ -25,7 +25,7 @@ public class LoginController {
         String pin  = pinField.getText().trim();
 
         if (card.isEmpty() || pin.isEmpty()) {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.missingLoginInput"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.missingLoginInput"), IBankLauncher.getBundle());
             return;
         }
 
@@ -37,7 +37,7 @@ public class LoginController {
         } 
         else 
         {
-			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidLogin"));
+			PopUpUtils.showErrorPopUp(IBankLauncher.getBundle().getString("error.invalidLogin"), IBankLauncher.getBundle());
         }
     }
 }
