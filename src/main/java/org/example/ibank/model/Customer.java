@@ -12,7 +12,7 @@ public class Customer {
 	}
 
 	public boolean tryTransferFunds (float amount, Account source, Account target) {
-		return tryTransferFunds(amount, source, target, false);
+		return tryTransferFunds(amount, source, target, true);
 	}
 
 	public boolean tryTransferFunds (float amount, Account source, Account target, boolean storeTransactionInDatabase) {
@@ -28,7 +28,7 @@ public class Customer {
 	}
 
 	public void depositTo(float amount, Account target) {
-		depositTo(amount, target, false);
+		depositTo(amount, target, true);
 	}
 
 	public void depositTo(float amount, Account target, boolean storeTransactionInDatabase) {
@@ -37,7 +37,7 @@ public class Customer {
 	}
 
 	public boolean tryWithdrawFrom(float amount, Account target) {	
-		return tryWithdrawFrom(amount, target, false);
+		return tryWithdrawFrom(amount, target, true);
 	}
 
 	public boolean tryWithdrawFrom(float amount, Account target, boolean storeTransactionInDatabase) {
@@ -74,8 +74,15 @@ public class Customer {
 		{
 			AccountsDatabase.updateAccount(source);
 		}
+		
+		updateAccounts();
 	}
 
+	private void updateAccounts() 
+	{
+		accounts = AccountsDatabase.queryCustomer(cardNumber).accounts;
+	}
+	
 	private void getTransactionHistory() {
 		// TODO: return transaction history from database
 	}

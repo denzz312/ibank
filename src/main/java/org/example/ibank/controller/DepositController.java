@@ -3,6 +3,7 @@ package org.example.ibank.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.ibank.model.Account;
+import org.example.ibank.model.SessionManager;
 import org.example.ibank.utils.PopUpUtils;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class DepositController {
     			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
                 return;
             }
-            account.increaseFundsBy(amount);
+            SessionManager.currentCustomer.depositTo(amount, account);
             statusLabel.setText("Deposited $" + amount);
             //TODO: maybe add a confirmation screen
             IBankLauncher.showAccountMainScreen();

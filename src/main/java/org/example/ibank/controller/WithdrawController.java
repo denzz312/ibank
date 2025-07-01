@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.layout.VBox;
 import org.example.ibank.model.Account;
+import org.example.ibank.model.SessionManager;
 import org.example.ibank.utils.PopUpUtils;
 import org.example.ibank.IBankLauncher;
 
@@ -64,7 +65,7 @@ public class WithdrawController {
 			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
             return;
         }
-        if (account.tryDecreaseFundsBy(amount)) 
+        if (SessionManager.currentCustomer.tryWithdrawFrom(amount, account)) 
         {
             IBankLauncher.showAccountMainScreen();
         } 
