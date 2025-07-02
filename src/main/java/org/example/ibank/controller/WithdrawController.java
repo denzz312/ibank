@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import javafx.scene.layout.VBox;
 import org.example.ibank.model.Account;
+import org.example.ibank.model.Customer;
+import org.example.ibank.model.SessionManager;
 import org.example.ibank.utils.PopUpUtils;
 import org.example.ibank.IBankLauncher;
 
@@ -49,28 +51,43 @@ public class WithdrawController {
         } 
         catch (NumberFormatException e) 
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"), bundle);
         }
     }
 
     private void withdraw(float amount) throws IOException {
         if (amount <= 0) 
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"), bundle);
             return;
         }
         if (amount%5 != 0)
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"), bundle);
             return;
         }
-        if (account.tryDecreaseFundsBy(amount)) 
+
+        boolean isConfirmed = PopUpUtils.showConfirmationPopUp("Withdraw $" + amount + " from account " + account.getID() + "?", bundle);
+
+        if (!isConfirmed) return;
+
+        float withdrawnToday = SessionManager.currentCustomer.getWithdrawnToday(account);
+        System.out.println("WithdrawnToday: " + withdrawnToday);
+        if (withdrawnToday + amount > Customer.DAILY_WITHDRAWAL_LIMIT) {
+            System.out.println("Daily withdrawal limit exceeded.");
+
+            PopUpUtils.showErrorPopUp(bundle.getString("error.dailyWithdrawalLimitExceeded"), bundle);
+            return;
+        }
+
+        if (SessionManager.currentCustomer.tryWithdrawFrom(amount, account)) 
         {
             IBankLauncher.showAccountMainScreen();
         } 
         else 
         {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.insufficientFunds"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.insufficientFunds"), bundle );
+            return;
         }
     }
 }

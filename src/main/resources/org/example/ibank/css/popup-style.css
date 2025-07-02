@@ -23,6 +23,14 @@
     -fx-text-fill: white;
 }
 
+#noButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #007ACC;
+    -fx-border-color: #007ACC;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10;
+}
+
 .button:hover {
     -fx-background-color: #005A9E;
 }

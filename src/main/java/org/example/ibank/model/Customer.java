@@ -1,9 +1,13 @@
 package org.example.ibank.model;
 
+import java.time.LocalDate;
+
 public class Customer {
 
 	public Account[] accounts;
 	public final String cardNumber;
+	public static final float DAILY_WITHDRAWAL_LIMIT = 3000f;
+
 
 	public Customer(String cardNumber, Account[] accounts)
 	{
@@ -12,7 +16,7 @@ public class Customer {
 	}
 
 	public boolean tryTransferFunds (float amount, Account source, Account target) {
-		return tryTransferFunds(amount, source, target, false);
+		return tryTransferFunds(amount, source, target, true);
 	}
 
 	public boolean tryTransferFunds (float amount, Account source, Account target, boolean storeTransactionInDatabase) {
@@ -28,7 +32,7 @@ public class Customer {
 	}
 
 	public void depositTo(float amount, Account target) {
-		depositTo(amount, target, false);
+		depositTo(amount, target, true);
 	}
 
 	public void depositTo(float amount, Account target, boolean storeTransactionInDatabase) {
@@ -37,10 +41,16 @@ public class Customer {
 	}
 
 	public boolean tryWithdrawFrom(float amount, Account target) {	
-		return tryWithdrawFrom(amount, target, false);
+		return tryWithdrawFrom(amount, target, true);
 	}
 
 	public boolean tryWithdrawFrom(float amount, Account target, boolean storeTransactionInDatabase) {
+
+		float withdrawnToday = getWithdrawnToday(target);
+		if (withdrawnToday + amount > DAILY_WITHDRAWAL_LIMIT) {
+			System.out.println("Daily withdrawal limit exceeded.");
+			return false;
+		}
 
 		if (!target.tryDecreaseFundsBy(amount))
 		{
@@ -49,6 +59,15 @@ public class Customer {
 
 		saveTransaction(TransactionType.WITHDRAW, amount, target, null, storeTransactionInDatabase);
 		return true;
+	}
+
+	public float getWithdrawnToday(Account account) {
+		LocalDate today = LocalDate.now();
+		return (float) account.getTransactions().stream()
+				.filter(t -> t.getType() == TransactionType.WITHDRAW)
+				.filter(t -> t.getDate().toLocalDate().equals(today))
+				.mapToDouble(Transaction::getAmount)
+				.sum();
 	}
 
 	private void saveTransaction(TransactionType transactionType, float amount, Account target, Account source, boolean storeTransactionInDatabase) {
@@ -74,8 +93,15 @@ public class Customer {
 		{
 			AccountsDatabase.updateAccount(source);
 		}
+		
+		updateAccounts();
 	}
 
+	private void updateAccounts() 
+	{
+		accounts = AccountsDatabase.queryCustomer(cardNumber).accounts;
+	}
+	
 	private void getTransactionHistory() {
 		// TODO: return transaction history from database
 	}

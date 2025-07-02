@@ -88,13 +88,13 @@ public class IBankLauncher extends Application {
     
     public void showPopUps() {
         try {
-            PopUpUtils.showSuccessPopUp("Operation completed successfully!");
-            PopUpUtils.showErrorPopUp("An error occurred.");
-            boolean confirmed = PopUpUtils.showConfirmationPopUp("Are you sure?");
+            PopUpUtils.showSuccessPopUp("Operation completed successfully!", getBundle());
+            PopUpUtils.showErrorPopUp("An error occurred.", getBundle());
+            boolean confirmed = PopUpUtils.showConfirmationPopUp("Are you sure?", getBundle());
             if (confirmed) {
-                PopUpUtils.showSuccessPopUp("Confirmed!");
+                PopUpUtils.showSuccessPopUp("Confirmed!", getBundle());
             } else {
-                PopUpUtils.showErrorPopUp("Cancelled!");
+                PopUpUtils.showErrorPopUp("Cancelled!", getBundle());
             }
         } catch (Exception e) {
             e.printStackTrace();
