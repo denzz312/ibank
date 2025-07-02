@@ -31,21 +31,26 @@ public class DepositController {
         try {
             float amount = Float.parseFloat(amountField.getText().trim());
             if (amount <= 0) {
-    			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"));
+    			PopUpUtils.showErrorPopUp(bundle.getString("error.negativeNumber"), bundle);
                 return;
             }
             if (amount%5 != 0)
             {
-    			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"));
+    			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidDenomination"), bundle );
                 return;
             }
+
+            boolean isConfirmed = PopUpUtils.showConfirmationPopUp(
+                bundle.getString("deposit.confirmationMessage") + " " + amount + " " + bundle.getString("deposit.toAccount") + " " + account.getID() + "?", bundle);
+
+            if (!isConfirmed) return;
+
             SessionManager.currentCustomer.depositTo(amount, account);
             statusLabel.setText("Deposited $" + amount);
-            //TODO: maybe add a confirmation screen
             IBankLauncher.showAccountMainScreen();
 
         } catch (NumberFormatException e) {
-			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"));
+			PopUpUtils.showErrorPopUp(bundle.getString("error.invalidNumber"), bundle );
         }
     }
 }
