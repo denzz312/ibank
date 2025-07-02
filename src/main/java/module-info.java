@@ -16,4 +16,5 @@ module org.example.ibank {
     exports org.example.ibank;
     exports org.example.ibank.controller;
     opens org.example.ibank.controller to javafx.fxml;
+    opens org.example.ibank.model to javafx.base;
 }

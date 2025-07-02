@@ -64,5 +64,10 @@ public class AccountScreenController {
     private void onTransactionHistoryClicked() {
         System.out.println("Transaction History clicked");
         // TODO: open transaction history screen
+        IBankLauncher.showScreen("transaction-history-view.fxml", loader -> {
+            TransactionHistoryController thc = loader.getController();
+            thc.setAccount(account);
+            IBankLauncher.primaryStage.setTitle(IBankLauncher.getBundle().getString("transaction.history.title"));
+        });
     }
 }
