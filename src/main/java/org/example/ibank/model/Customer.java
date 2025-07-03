@@ -1,6 +1,8 @@
 package org.example.ibank.model;
 
+import java.lang.classfile.TypeAnnotation.TargetType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Customer {
 
@@ -92,8 +94,13 @@ public class Customer {
 		if (source != null)
 		{
 			AccountsDatabase.updateAccount(source);
+			source.addTransaction(new Transaction(source.getID(), target.getID(), amount, LocalDateTime.now(), transactionType));
+			target.addTransaction(new Transaction(source.getID(), target.getID(), amount, LocalDateTime.now(), transactionType));
 		}
-		
+		else 
+		{
+			target.addTransaction(new Transaction(null, target.getID(), amount, LocalDateTime.now(), transactionType));
+		}
 		updateAccounts();
 	}
 
